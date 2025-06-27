@@ -293,8 +293,8 @@ if __name__ == "__main__":
 
     data_collator = DataCollatorForTokenClassification(tokenizer)
 
-    bert_model = BertForTokenClassification.from_pretrained('model/bert_multiclass_original', local_files_only=True)
-    roberta_model = RobertaForTokenClassification.from_pretrained("model/roberta_multiclass", local_files_only=True, num_labels=len(taglist))
+    bert_model = BertForTokenClassification.from_pretrained('bert_multiclass_original', local_files_only=True)
+    roberta_model = RobertaForTokenClassification.from_pretrained("roberta_multiclass", local_files_only=True, num_labels=len(taglist))
     # roberta_model = RobertaForTokenClassification.from_pretrained("roberta-base", local_files_only=True, num_labels=len(taglist))
 
     # For fine-tune training the BERT model
@@ -354,14 +354,14 @@ if __name__ == "__main__":
     # print("RoBERTa model saved")
 
     # BiLSTM Training & Loading
-    bilstm_weights_path = "model/bilstm_weights.pt"
+    bilstm_weights_path = "bilstm_weights.pt"
     bilstm_model = BiLSTMTagger(vocab_size=30522, embedding_dim=128, hidden_dim=256, tagset_size=len(taglist))
 
     if not os.path.exists(bilstm_weights_path):
         print("Training BiLSTM model...")
         train_input_ids, train_label_ids = encode_tokens(input_token_lists, input_tag_lists)
         train_bilstm(bilstm_model, train_input_ids, train_label_ids)
-        os.makedirs("model", exist_ok=True)
+        # os.makedirs("model", exist_ok=True)
         torch.save(bilstm_model.state_dict(), bilstm_weights_path)
         print("Saved BiLSTM weights.")
     else:

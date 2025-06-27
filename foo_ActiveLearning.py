@@ -257,7 +257,7 @@ if __name__ == "__main__":
             model_name = "bert-base-german-cased"
         else :
             model = BertForTokenClassification.from_pretrained(
-                'model/bert_multiclass', num_labels=len(taglist), local_files_only=True)
+                'bert_multiclass', num_labels=len(taglist), local_files_only=True)
             model_name = f"bert_multiclassV{round_idx + 1}"
 
         print(f"\n=== Active Learning Round {round_idx + 1}/{AL_ROUNDS} ==="
@@ -283,7 +283,7 @@ if __name__ == "__main__":
         print("(re)training model")
         trainer.train()
         print("Saving (re)trained model")
-        trainer.save_model("model/bert_multiclass")
+        trainer.save_model("bert_multiclass")
 
         # print(f"\nEVAL Results Round {round_idx + 1}/{AL_ROUNDS} ==================")
         # test_results = trainer.evaluate(eval_dataset=tokenized_val_dataset)

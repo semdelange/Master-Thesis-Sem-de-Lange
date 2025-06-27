@@ -6,7 +6,7 @@ import sys
 
 
 def tag_sentence(sentence):
-    model = BertForTokenClassification.from_pretrained('model/bert_multiclass_original',local_files_only=True)
+    model = BertForTokenClassification.from_pretrained('bert_multiclass_original',local_files_only=True)
     inputs = tokenizer(sentence, return_tensors="pt", truncation=True, padding='max_length', max_length=128)
     tokens = map(tokenizer.decode, inputs['input_ids'][0])
     logits = model(**inputs).logits
@@ -28,7 +28,7 @@ def tag_sentence(sentence):
 
 
 def classify_sentence(sentence):
-    model = BertForTokenClassification.from_pretrained('model-just-citation/checkpoint-176',local_files_only=True)
+    model = BertForTokenClassification.from_pretrained('bert_multiclass_cit',local_files_only=True)
     inputs = tokenizer(sentence, return_tensors="pt", truncation=True, padding='max_length', max_length=128)
     tokens = map(tokenizer.decode, inputs['input_ids'][0])
     logits = model(**inputs).logits

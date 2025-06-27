@@ -218,10 +218,8 @@ if __name__ == "__main__":
     print(tokenized_test_dataset)
 
     # model = BertForTokenClassification.from_pretrained('bert-base-german-cased', num_labels=len(taglist))
-    # model = BertForTokenClassification.from_pretrained('model_pre_ser/bert_multiclass',local_files_only=True)
-    # model = BertForTokenClassification.from_pretrained('model/bert_multiclass', local_files_only=True)
-    model = BertForTokenClassification.from_pretrained('model/bert_multiclass_20percentdata', local_files_only=True)
-    # model = BertForTokenClassification.from_pretrained('results/checkpoint-21',local_files_only=True)
+    # model = BertForTokenClassification.from_pretrained('bert_multiclass', local_files_only=True)
+    model = BertForTokenClassification.from_pretrained('bert_multiclass_20percentdata', local_files_only=True)
 
     training_args = TrainingArguments(
         use_cpu=True,
